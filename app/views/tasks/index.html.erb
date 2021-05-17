@@ -1,4 +1,5 @@
 <h1>タスク一覧</h1>
+<p><%= notice %></p>
 <table>
   <tr>
     <th>タスク名</th>
@@ -10,6 +11,7 @@
       <td><%= task.content %></td>
       <td><%= link_to '詳細を確認', task_path(task.id) %></td>
       <td><%= link_to 'タスクを編集する', edit_task_path(task.id) %></td>
+      <td><%= link_to 'タスクを削除する', task_path(task.id), method: :delete ,data: { confirm: '本当に削除していいですか？' }%></td>
     </tr>
   <% end %>
 </table>
