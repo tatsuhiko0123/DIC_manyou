@@ -9,7 +9,9 @@
       <td><%= task.title %></td>
       <td><%= task.content %></td>
       <td><%= link_to '詳細を確認', task_path(task.id) %></td>
+      <td><%= link_to 'タスクを編集する', edit_task_path(task.id) %></td>
     </tr>
   <% end %>
 </table>
+<%= link_to '新規作成', new_task_path %>
 
