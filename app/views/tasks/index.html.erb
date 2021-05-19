@@ -8,7 +8,7 @@
       <%= form.text_field :search_title, placeholder: "タスク名で検索" %>
     </p>
     <p>
-      <%= form.label :status, "ステータス" %>
+      <%= form.label :search_status, "ステータス" %>
       <%= form.select :search_status, Task.statuses.keys, { include_blank: '選択してください'} %>
     </p>
     <p><%= form.submit "検索", name: "search" %></p>

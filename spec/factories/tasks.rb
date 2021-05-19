@@ -6,5 +6,6 @@ FactoryBot.define do
     title { 'test_title' }
     content { 'test_content' }
     expired_at { '2021-04-01 01:11:00' }
+    status { 1 }
   end
 end
