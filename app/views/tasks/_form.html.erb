@@ -21,7 +21,7 @@
     <%= form.label :expired_at %>
     <%= form.date_field :expired_at %>
   </div><br>
-  <%= form.select :status, [["未着手"], ["着手中"], ["完了"]], include_blank: "選択して下さい" %><br>
+  <%= form.select :status,  Task.statuses.keys %><br>
   <%= form.submit button_text %><br>
 <% end %>
 <%= link_to '戻る', tasks_path %>
