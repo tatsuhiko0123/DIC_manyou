@@ -1,8 +1,8 @@
 require 'rails_helper'
 RSpec.describe 'タスク管理機能', type: :system do
-  let!(:task) { FactoryBot.create(:task, title: 'task', content: 'task') }
-  let!(:task2) { FactoryBot.create(:task, title: 'task2', content: 'task2') }
-  let!(:task3) { FactoryBot.create(:task, title: 'task3', content: 'task3') }
+  let!(:task) { FactoryBot.create(:task, title: 'task', content: 'task', expired_at: '2021-04-01 01:11:00') }
+  let!(:task2) { FactoryBot.create(:task, title: 'task2', content: 'task2', expired_at: '2021-04-11 02:34:00') }
+  let!(:task3) { FactoryBot.create(:task, title: 'task3', content: 'task3', expired_at: '2021-04-22 03:45:00') }
   before do
     visit tasks_path
   end
@@ -25,6 +25,13 @@ RSpec.describe 'タスク管理機能', type: :system do
     end
     context 'タスクが作成日時の降順に並んでいる場合' do
       it '新しいタスクが一番上に表示される' do
+        task_list = all('.task_row')
+        expect(task_list[0]).to have_content 'task3'
+      end
+    end
+    context 'タスクが終了期限の降順に並んでいる場合' do
+      it '終了期限の遅いタスクが一番上に表示される' do
+        click_on '終了期限でソートする'
         task_list = all('.task_row')
         expect(task_list[0]).to have_content 'task3'
       end

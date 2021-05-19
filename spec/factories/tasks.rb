@@ -5,9 +5,6 @@ FactoryBot.define do
   factory :task do
     title { 'test1' }
     content { 'test1' }
-  end
-  factory :task2, class: Task do
-    title { 'test2' }
-    content { 'test2' }
+    expired_at { '2021-04-01 01:11:00' }
   end
 end
