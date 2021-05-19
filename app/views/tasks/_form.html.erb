@@ -15,7 +15,11 @@
   </div>
   <div>
     <%= form.label :content %>
-    <%= form.text_field :content %>
+    <%= form.text_area :content %>
+  </div>
+  <div>
+    <%= form.label :expired_at %>
+    <%= form.text_area :expired_at %>
   </div>
   <%= form.submit button_text %>
 <% end %>
