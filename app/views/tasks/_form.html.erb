@@ -9,20 +9,26 @@
       </ul>
     </div>
   <% end %>
-  <div>
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+  <div class="new_area">
+    <%= form.label :タスク名 %><br>
+    <%= form.text_field :title, placeholder: "タスク名を入力", size: 50 %>
   </div>
-  <div>
-    <%= form.label :content %>
-    <%= form.text_area :content %>
+  <div class="new_area">
+    <%= form.label :タスク内容 %><br>
+    <%= form.text_area :content, placeholder: "タスク内容を入力", size: "50x5" %>
   </div>
-  <div>
-    <%= form.label :expired_at %>
+  <div class="new_area">
+    <%= form.label :終了期限 %><br>
     <%= form.date_field :expired_at %>
-  </div><br>
-  <%= form.select :status,  Task.statuses.keys %><br>
-  <%= form.select :priority,  Task.priorities.keys %><br>
-  <%= form.submit button_text %><br>
+  </div>
+  <div class="new_area">
+    <%= form.label :ステータス %><br>
+    <%= form.select :status,  Task.statuses.keys %>
+  </div>
+  <div class="new_area">
+    <%= form.label :優先順位 %><br>
+    <%= form.select :priority,  Task.priorities.keys %>
+  </div>
+  <div class="new_area"><%= form.submit button_text %><br>
 <% end %>
-<%= link_to '戻る', tasks_path %>
+<p class="btn_area"><button type="button" class="btn btn-default btn-default active"><%= link_to '戻る', tasks_path %></button></p>

@@ -32,14 +32,14 @@ RSpec.describe 'タスク管理機能', type: :system do
     end
     context 'タスクが終了期限の降順に並んでいる場合' do
       it '終了期限の遅いタスクが一番上に表示される' do
-        click_on '終了期限でソートする'
+        click_on '終了期限 🔽'
         task_list = all('.task_row')
         expect(task_list[0]).to have_content 'task3'
       end
     end
     context 'タスクが優先順位の高い順に並んでいる場合' do
       it '優先順位の高いタスクが一番上に表示される' do
-        click_on '優先度でソートする'
+        click_on '優先順位 🔽'
         task_list = all('.task_row')
         expect(task_list[0]).to have_content 'task'
       end
