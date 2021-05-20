@@ -11,8 +11,8 @@ class TasksController < ApplicationController
       elsif params[:search_status].present?
         @tasks = Task.search_status(params[:search_status])
       end
-    else
-      @tasks = Task.order(created_at: :desc)
+    else params[:sort_priority]
+      @tasks = Task.order(priority: :asc) 
     end
   end
 
@@ -56,7 +56,7 @@ class TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:title, :content, :expired_at, :status)
+    params.require(:task).permit(:title, :content, :expired_at, :status, :priority)
   end
   def set_task
     @task = Task.find(params[:id])

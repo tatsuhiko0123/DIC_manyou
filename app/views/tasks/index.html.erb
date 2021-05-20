@@ -1,6 +1,7 @@
 <h1>タスク一覧</h1>
 <p><%= notice %></p>
 <%= link_to "終了期限でソートする", tasks_path(sort_expired: "true") %>
+<%= link_to "優先度でソートする", tasks_path(sort_priority: "true") %>
 <div>
   <%= form_with(local: true, method: :get, url: tasks_path ) do |form| %>
     <p>
@@ -20,6 +21,7 @@
     <th>タスク</th>
     <th>終了期限</th>
     <th>ステータス</th>
+    <th>優先順位</th>
   </tr>
   <% @tasks.each do |task| %>
     <tr>
@@ -27,6 +29,7 @@
       <td class="task_row"><%= task.content %></td>
       <td class="task_row"><%= task.expired_at %></td>
       <td class="task_row"><%= task.status %></td>
+      <td class="task_row"><%= task.priority %></td>
       <td><%= link_to '詳細を確認', task_path(task.id) %></td>
       <td><%= link_to 'タスクを編集する', edit_task_path(task.id) %></td>
       <td><%= link_to 'タスクを削除する', task_path(task.id), method: :delete ,data: { confirm: '本当に削除していいですか？' }%></td>

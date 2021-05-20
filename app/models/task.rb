@@ -5,4 +5,5 @@ class Task < ApplicationRecord
   scope :search_title, -> (search_title) { where("title LIKE ?", "%#{search_title}%") }
   scope :search_status, -> (search_status) { where(status: search_status)}
   enum status: { 未着手: 1, 着手: 2, 完了: 3 }
+  enum priority: { 高: 1, 中: 2, 低: 3 }
 end

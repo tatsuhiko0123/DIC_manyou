@@ -22,6 +22,7 @@
     <%= form.date_field :expired_at %>
   </div><br>
   <%= form.select :status,  Task.statuses.keys %><br>
+  <%= form.select :priority,  Task.priorities.keys %><br>
   <%= form.submit button_text %><br>
 <% end %>
 <%= link_to '戻る', tasks_path %>
