@@ -1,19 +1,43 @@
-<h1>タスク一覧</h1>
+<h2>タスク一覧</h2>
 <p><%= notice %></p>
+<div>
+  <%= form_with(local: true, method: :get, url: tasks_path ) do |form| %>
+    <p class="search">
+      <span class="search_area">
+        <%= form.label :search_title, "タスク名" %>
+        <%= form.text_field :search_title, placeholder: "タスク名で検索", size: 50 %>
+      </span>
+      <span class="search_area">
+       <%= form.label :search_status, "ステータス" %>
+       <%= form.select :search_status, Task.statuses.keys, { include_blank: '選択してください'}, size: 1 %>
+      </span>
+      <span class="search_area">
+        <%= form.submit "検索", name: "search" %>
+      </span>
+    </p>
+  <% end %>
+</div>
+<p class="btn_area"><button type="button" class="btn btn-default btn-default active"><%= link_to '新規作成', new_task_path %></button></p>
 <table>
   <tr>
     <th>タスク名</th>
-    <th>タスク</th>
+    <th>タスク内容</th>
+    <th><%= link_to "終了期限 🔽", tasks_path(sort_expired: "true") %></th>
+    <th>ステータス</th>
+    <th><%= link_to "優先順位 🔽", tasks_path(sort_priority: "true") %></th>
   </tr>
   <% @tasks.each do |task| %>
     <tr>
       <td class="task_row"><%= task.title %></td>
       <td class="task_row"><%= task.content %></td>
-      <td><%= link_to '詳細を確認', task_path(task.id) %></td>
-      <td><%= link_to 'タスクを編集する', edit_task_path(task.id) %></td>
-      <td><%= link_to 'タスクを削除する', task_path(task.id), method: :delete ,data: { confirm: '本当に削除していいですか？' }%></td>
+      <td class="task_row"><%= task.expired_at %></td>
+      <td class="task_row"><%= task.status %></td>
+      <td class="task_row"><%= task.priority %></td>
+      <td type="button" class="btn btn-default btn-sm"><%= link_to '詳細を確認', task_path(task.id) %></td>
+      <td type="button" class="btn btn-default btn-sm"><%= link_to 'タスクを編集', edit_task_path(task.id) %></td>
+      <td type="button" class="btn btn-default btn-sm"><%= link_to 'タスクを削除', task_path(task.id), method: :delete ,data: { confirm: '本当に削除していいですか？' }%></td>
     </tr>
   <% end %>
 </table>
-<%= link_to '新規作成', new_task_path %>
+<%= paginate @tasks %>
 

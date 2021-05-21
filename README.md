@@ -1,21 +1,21 @@
 # README
 ## テーブルスキーマ
 ### Taskテーブル
-| カラム名 | データ型 |
-|:--------|-------:|
-| id      | bigint | 
-| user_id | bigint | 
-| title   | string |
-| content | text | 
-| priority| string | 
-| period  | string | 
-| status  | string | 
+| カラム名 | データ型 | 内容 |
+|:--------|--------|-------:|
+| id      | bigint | task_id |
+| user_id | bigint | user_id |
+| title   | string | タスク |
+| content | text |   タスク内容 |
+| priority| integer | 優先度 | 
+| expired_at| datetime | 終了期限 | 
+| status  | integer | ステータス | 
 ### Userテーブル
-| カラム名 | データ型 |
-|:--------|-------:|
-| name    | string | 
-| email   | string | 
-| password_digest  | string |
+| カラム名 | データ型 | 内容 |
+|:--------|--------|-------:|
+| name    | string | 名前 |
+| email   | string | email | 
+| password_digest  | string | password |
 
 ___
 ## herokumのデプロイ手順
