@@ -2,19 +2,19 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   def index
     if params[:sort_expired]
-      @tasks = Task.order(expired_at: :desc).page(params[:page]).per(3)
+      @tasks = current_user.tasks.order(expired_at: :desc).page(params[:page]).per(3)
     elsif params[:sort_priority]
-      @tasks = Task.order(priority: :asc).page(params[:page]).per(3)     
+      @tasks = current_user.tasks.order(priority: :asc).page(params[:page]).per(3)     
     elsif params[:search]
       if params[:search_title].present? && params[:search_status].present?
-        @tasks = Task.search_title(params[:search_title]).search_status(params[:search_status]).page(params[:page]).per(3) 
+        @tasks = current_user.tasks.search_title(params[:search_title]).search_status(params[:search_status]).page(params[:page]).per(3) 
       elsif params[:search_title].present?
-        @tasks = Task.search_title(params[:search_title]).page(params[:page]).per(3) 
+        @tasks = current_user.tasks.search_title(params[:search_title]).page(params[:page]).per(3) 
       elsif params[:search_status].present?
-        @tasks = Task.search_status(params[:search_status]).page(params[:page]).per(3) 
+        @tasks = current_user.tasks.search_status(params[:search_status]).page(params[:page]).per(3) 
       end
     else
-      @tasks = Task.order(created_at: :desc).page(params[:page]).per(3) 
+      @tasks = current_user.tasks.order(created_at: :desc).page(params[:page]).per(3) 
     end
   end
 
@@ -23,7 +23,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.create(task_params)
+    @task = current_user.tasks.build(task_params)
     if @task.save
       redirect_to tasks_path, notice: "タスクを作成しました！"
     else
@@ -58,7 +58,7 @@ class TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:title, :content, :expired_at, :status, :priority)
+    params.require(:task).permit(:title, :content, :expired_at, :status, :priority, :user_id)
   end
   def set_task
     @task = Task.find(params[:id])
