@@ -11,5 +11,6 @@ email = "kuro@gmail.com"
 password = "111111"
 User.create!(name: name,
              email: email,
-             password_digest: password,
-             )
+             password:  "111111",
+             password_confirmation: "111111",
+             admin: true)
