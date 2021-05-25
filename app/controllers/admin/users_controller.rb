@@ -3,7 +3,7 @@ class Admin::UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    @users = User.select(:id, :name).page(params[:page]).per(5)
+    @users = User.select(:id, :name).page(params[:page]).per(3)
   end
 
   def new
@@ -31,7 +31,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
-    @tasks = @user.tasks.page(params[:page]).per(5)
+    @tasks = @user.tasks.page(params[:page]).per(3)
   end
 
   def destroy

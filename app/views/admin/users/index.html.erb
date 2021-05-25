@@ -1,11 +1,18 @@
 <h2>【管理画面】：ユーザー一覧画面</h2>
 <%= notice %>
-<%= link_to '新しくユーザーを作成する', new_admin_user_path %>
-<% @users.each do |user| %>
-  <p>ID<%= user.id %></p>
-  <p>名前<%= user.name %></p>
-  <p>タスク<%= user.tasks.count %>件</p>
-  <%= link_to '詳細を確認する', admin_user_path(user.id), class: "show_user" %>
-  <%= link_to "ユーザー情報を編集する", edit_admin_user_path(user.id), data: { confirm: '本当に編集していいですか？' } %>
-  <%= link_to 'ユーザー情報を削除する', admin_user_path(user.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %>
-<% end %>
+<div>
+  <p class="btn_area"><button type="button" class="btn btn-default btn-default active"><%= link_to '新規ユーザー作成', new_admin_user_path %></button></p>
+  <% @users.each do |user| %>
+    <hr>
+    <p>
+      <span class="index_area">名前：<%= user.name %></span>
+      <span class="index_area">ID：<%= user.id %></span>
+      <span class="index_area">タスク：<%= user.tasks.count %>件</span>
+    </p>
+    <span type="button" class="btn btn-default btn-sm"><%= link_to '詳細を確認', admin_user_path(user.id), class: "show_user" %></span>
+    <span type="button" class="btn btn-default btn-sm"><%= link_to "ユーザー情報を編集", edit_admin_user_path(user.id), data: { confirm: '本当に編集していいですか？' } %></span>
+    <span type="button" class="btn btn-default btn-sm"><%= link_to 'ユーザー情報を削除', admin_user_path(user.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %></span>
+  <% end %>
+  <hr>
+</div>
+<%= paginate @users %>

@@ -1,2 +1,4 @@
 <h2><%= @user.name %>のページ</h2>
-<p>メールアドレス: <%= @user.email %></p>
+<p>メールアドレス：<%= @user.email %></p>
+<p class="btn_area"><button type="button" class="btn btn-default btn-default active"><%= link_to '新規作成', new_task_path %></button></p>
+<p class="btn_area"><button type="button" class="btn btn-default btn-default active"><%= link_to 'タスク一覧', tasks_path %></button></p>

@@ -9,16 +9,26 @@
   </div>
 <% end %>
 <%= form_with(model: [ :admin, @user ], local: true) do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :email %>
-  <%= f.email_field :email %>
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
-  <%= f.label :admin %>
-  <%= f.select :admin, User.admins.keys %>
-  <%= f.submit %>
+  <div class="admin_new_area">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="admin_new_area">
+    <%= f.label :email %><br>
+    <%= f.email_field :email %>
+  </div>
+  <div class="admin_new_area">
+    <%= f.label :password %><br>
+    <%= f.password_field :password %>  
+  </div>
+  <div class="admin_new_area">
+    <%= f.label :password_confirmation %><br>
+    <%= f.password_field :password_confirmation %>  
+  </div>
+  <div class="admin_new_area">
+    <%= f.label :admin %><br>
+    <%= f.select :admin, User.admins.keys %>  
+  </div><br>
+  <div class="admin_new_area"><%= f.submit %></div>
 <% end %>
-<p><%= link_to "ユーザー一覧画面にもどる", admin_users_path %></p>
+<p class="btn_area"><button type="button" class="btn btn-default btn-default active"><%= link_to "ユーザー一覧画面にもどる", admin_users_path %></button></p>
