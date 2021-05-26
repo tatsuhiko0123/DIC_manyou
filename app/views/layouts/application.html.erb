@@ -33,7 +33,7 @@
             <ul class="nav navbar-nav">
               <li><%= link_to '新規作成', new_task_path %></li>
               <li><%= link_to 'タスク一覧', tasks_path %></li>
-              <li><%= link_to "ユーザー一覧画面(管理者のみ)", admin_users_path %></li>
+              <li><%= link_to "管理画面", admin_users_path %></li>
             </ul>
           </div>
         </div>
@@ -41,7 +41,7 @@
     </header>
     <div class="content">
       <% flash.each do |key, value| %>
-        <%= content_tag(:div, value, class: "#{key}") %>
+        <div class="message"><%= content_tag(:div, value, class: "#{key}") %></div>
       <% end %>
       <% if logged_in? %>
         <button type="button" class="btn btn-info"><%= link_to "プロフィール", user_path(current_user.id) %></button>

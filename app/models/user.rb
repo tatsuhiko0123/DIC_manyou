@@ -7,4 +7,11 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, length: { minimum: 6 }
   enum admin: { 一般: false, 管理者: true }
+  before_destroy :delete_admin
+  private
+  def delete_admin
+    if self.admin && User.where(admin: true).count == 1
+      throw(:abort)
+    end
+  end
 end
