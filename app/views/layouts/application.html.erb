@@ -48,7 +48,6 @@
         <button type="button" class="btn btn-warning"><%= link_to "ログアウト", session_path(current_user.id), method: :delete %></button> 
       <% else %>
         <button type="button" class="btn btn-info"><%= link_to "新規アカウント作成", new_user_path %></button>
-        <button type="button" class="btn btn-warning"><%= link_to "ログイン", new_session_path %></button> 
       <% end %>
       <%= yield %>
     </div>   

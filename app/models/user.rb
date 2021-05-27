@@ -10,7 +10,7 @@ class User < ApplicationRecord
   before_destroy :delete_admin
   private
   def delete_admin
-    if self.admin && User.where(admin: true).count == 1
+    if User.where(admin: true).count == 1 && self.admin == "管理者"
       throw(:abort)
     end
   end
