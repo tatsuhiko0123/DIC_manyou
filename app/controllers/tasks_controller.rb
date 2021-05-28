@@ -1,21 +1,16 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   def index
-    if params[:sort_expired]
-      @tasks = current_user.tasks.order(expired_at: :desc).page(params[:page]).per(3)
-    elsif params[:sort_priority]
-      @tasks = current_user.tasks.order(priority: :asc).page(params[:page]).per(3)     
-    elsif params[:search]
-      if params[:search_title].present? && params[:search_status].present?
-        @tasks = current_user.tasks.search_title(params[:search_title]).search_status(params[:search_status]).page(params[:page]).per(3) 
-      elsif params[:search_title].present?
-        @tasks = current_user.tasks.search_title(params[:search_title]).page(params[:page]).per(3) 
-      elsif params[:search_status].present?
-        @tasks = current_user.tasks.search_status(params[:search_status]).page(params[:page]).per(3) 
-      end
-    else
-      @tasks = current_user.tasks.order(created_at: :desc).page(params[:page]).per(3) 
+    @tasks = current_user.tasks
+    @tasks = @tasks.order(expired_at: :desc) if params[:sort_expired]
+    @tasks = @tasks.order(priority: :asc) if params[:sort_priority]
+
+    if params[:search]
+      @tasks = @tasks.search_title(params[:search_title]) if params[:search_title]
+      @tasks = @tasks.search_status(params[:search_status]) if params[:search_status] != ""
     end
+
+    @tasks = @tasks.page(params[:page]).per(3)
   end
 
   def new
