@@ -33,13 +33,22 @@
             <ul class="nav navbar-nav">
               <li><%= link_to '新規作成', new_task_path %></li>
               <li><%= link_to 'タスク一覧', tasks_path %></li>
-              <li><a href="#">アカウント</a></li>
+              <li><%= link_to "管理画面", admin_users_path %></li>
             </ul>
           </div>
         </div>
       </nav>
     </header>
     <div class="content">
+      <% flash.each do |key, value| %>
+        <div class="message"><%= content_tag(:div, value, class: "#{key}") %></div>
+      <% end %>
+      <% if logged_in? %>
+        <button type="button" class="btn btn-info"><%= link_to "プロフィール", user_path(current_user.id) %></button>
+        <button type="button" class="btn btn-warning"><%= link_to "ログアウト", session_path(current_user.id), method: :delete %></button> 
+      <% else %>
+        <button type="button" class="btn btn-info"><%= link_to "新規アカウント作成", new_user_path %></button>
+      <% end %>
       <%= yield %>
     </div>   
   </body>
