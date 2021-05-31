@@ -8,6 +8,8 @@ class TasksController < ApplicationController
     if params[:search]
       @tasks = @tasks.search_title(params[:search_title]) if params[:search_title]
       @tasks = @tasks.search_status(params[:search_status]) if params[:search_status] != ""
+      @tasks = @tasks.search_label(params[:search_label]) if params[:search_label] != ""
+
     end
 
     @tasks = @tasks.page(params[:page]).per(3)
