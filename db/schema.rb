@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2021_05_31_041306) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "expired_at", default: "2021-05-23 23:59:59", null: false
+    t.datetime "expired_at", default: "2021-06-06 23:59:59", null: false
     t.integer "status"
     t.integer "priority"
     t.bigint "user_id"
