@@ -22,6 +22,7 @@
     <th>作成者</th>
     <th>タスク名</th>
     <th>タスク内容</th>
+    <th>ラベル</th>
     <th><%= link_to "終了期限 🔽", tasks_path(sort_expired: "true") %></th>
     <th>ステータス</th>
     <th><%= link_to "優先順位 🔽", tasks_path(sort_priority: "true") %></th>
@@ -31,6 +32,11 @@
       <td class="task_row"><%= task.user.name %></td>
       <td class="task_row"><%= task.title %></td>
       <td class="task_row"><%= task.content %></td>
+      <td class="task_row">
+        <% task.labels.each do |label| %>
+          <%= label.name %>
+        <% end %>
+      </td>
       <td class="task_row"><%= task.expired_at %></td>
       <td class="task_row"><%= task.status %></td>
       <td class="task_row"><%= task.priority %></td>

@@ -29,6 +29,9 @@
     <%= form.label :優先順位 %><br>
     <%= form.select :priority,  Task.priorities.keys %>
   </div>
+  <div class="new_area">
+    <%= form.collection_check_boxes(:label_ids, Label.all, :id, :name) %>
+  </div>
   <div class="new_area"><%= form.submit button_text %><br>
 <% end %>
 <p class="btn_area"><button type="button" class="btn btn-default btn-default active"><%= link_to '戻る', tasks_path %></button></p>
